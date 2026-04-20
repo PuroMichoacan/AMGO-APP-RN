@@ -77,7 +77,7 @@ const mainMenu = () => {
       <ScrollView showsVerticalScrollIndicator={false} className="flex-1">
         
         {/* CARRUSEL SPECTACULAR */}
-        <View className="mt-4">
+        <View className="m-4">
           <ScrollView 
             horizontal 
             pagingEnabled 

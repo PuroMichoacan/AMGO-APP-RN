@@ -1,9 +1,20 @@
 import { Colors } from "@/constants/theme";
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
+import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useAuthStore } from "../auth/store/useAuthStore";
 import { ThemeText } from "./ThemeText";
 export function CustomDrawerContent(props: DrawerContentComponentProps) {
+
+    const {logout} = useAuthStore();
+
+
+    const onLogout  = () => {
+        logout();
+        router.replace('/');
+    }
+
 
 
     return (
@@ -22,7 +33,7 @@ export function CustomDrawerContent(props: DrawerContentComponentProps) {
                 <DrawerItemList {...props} />
             </View>
             <View style={styles.drawerFooter}>
-                <TouchableOpacity style={styles.logoutBtn}>
+                <TouchableOpacity style={styles.logoutBtn} onPress={onLogout}>
                     <Ionicons name="log-out-outline" size={22} color={Colors.red} />
                     <ThemeText style={styles.logoutText}>Cerrar Sesión</ThemeText>
                 </TouchableOpacity>

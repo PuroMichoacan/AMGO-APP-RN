@@ -6,9 +6,15 @@ import React, { useState } from 'react';
 import { Alert, Pressable, ScrollView, TextInput, View } from 'react-native';
 export default function Login() {
 
-  const [env, setEnv] = useState<"calidad" | "produccion" | "Desarrollo">("calidad");
+  const [env, setEnv] = useState<"calidad" | "produccion" | "Desarrollo">("produccion");
 
-  const { login } = useAuthStore();
+  const { login, setEnvironment } = useAuthStore();
+
+  const mapEnv = {
+    calidad: 'QAS',
+    produccion: 'PROD',
+    Desarrollo: 'DEV',
+  } as const;
 
   const [isPosting, setIsPosting] = useState(false);
 
@@ -19,14 +25,14 @@ export default function Login() {
 
 
   const onLogin = async () => {
-    
+
     const { email, password } = form;
-    console.log({ email, password });
 
     if (email.length === 0 || password.length === 0) {
-      Alert.alert('Campos incompletos','Verifica que la informacion este completa');
+      Alert.alert('Campos incompletos', 'Verifica que la informacion este completa');
       return;
     }
+    setEnvironment(mapEnv[env]);
 
     setIsPosting(true);
     const wasSuccesful = await login(email, password);
@@ -34,19 +40,19 @@ export default function Login() {
     setIsPosting(false);
 
 
-    if(wasSuccesful){
+    if (wasSuccesful) {
       router.replace('/mainMenu');
       return;
     }
 
 
-    Alert.alert('Error','Usuario o contraseña no son correctos');
+    Alert.alert('Error', 'Usuario o contraseña no son correctos');
 
 
   }
 
   return (
-    <ScrollView contentContainerStyle={{flexGrow : 1}}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <LinearGradient
         colors={[
           "#460a78",
@@ -119,7 +125,7 @@ export default function Login() {
               keyboardType="email-address"
               value={form.email}
               className="bg-white rounded-xl px-4 py-4 text-base text-gray-800"
-              onChangeText={(value) => setForm({...form,email : value})}
+              onChangeText={(value) => setForm({ ...form, email: value })}
             />
           </View>
 
@@ -130,7 +136,7 @@ export default function Login() {
               secureTextEntry
               autoCapitalize="none"
               value={form.password}
-              onChangeText={(value) => setForm({...form,password: value})}
+              onChangeText={(value) => setForm({ ...form, password: value })}
               className="bg-white rounded-xl px-4 py-4 text-base text-gray-800"
             />
           </View>

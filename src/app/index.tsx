@@ -27,9 +27,7 @@ export default function Index() {
     if(status === 'unauthenticated'){
         return <Redirect href={'/Login'} />
     }
-
-    
-    
+        
     return <Redirect href={'/mainMenu'}/>
 
 }
