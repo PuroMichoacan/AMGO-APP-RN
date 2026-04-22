@@ -1,0 +1,11 @@
+// Source of truth de todos los códigos que puede devolver la BD
+export enum ScreenCode {
+  //HSM
+  // HSM_COILYARD_CARGA,
+  // HSM_COILYARD_PROGRAMA,
+  HSM_COILYARD_REGISTRO_SETS = "HSM_COILYARD_REGISTRO_SETS",
+  // HSM_COILYARD_PLANIFICACION,
+  // HSM_COILYARD_CONFIRMAR_CARGA,
+  // HSM_COILYARD_PROCESO_CARGA,
+  // HSM_COILYARD_PUERTA_7,
+}
