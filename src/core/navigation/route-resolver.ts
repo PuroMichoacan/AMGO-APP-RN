@@ -13,5 +13,6 @@ export const goTo = (clavePantalla: string) => {
     return;
   }
 
+  console.log('Navegando a pantalla: ',route);
   router.push({ pathname: route as any });
 };

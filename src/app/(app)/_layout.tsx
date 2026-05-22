@@ -7,17 +7,11 @@ const isAuthenticated = false;
 
 export default function AppLayout() {
 
-  // obtener modulos y pantalllas asignadas al usuario
-
   return (
     <Drawer screenOptions={{ headerShown: true }}
       drawerContent={(props: DrawerContentComponentProps) => <CustomDrawerContent {...props}/>}
-    >
-      {/* Esta pantalla siempre existira, no es dinamica, esta pantalla es compartida por todas las apps */}
-      <Drawer.Screen name='mainMenu' options={{ header : () => <AppHeader title="Menu principal"/> }} />
-
-      {/* Cuando el usuario logea y tiene pantallas asignadas se cargan abajo como modulos */}
-
+    >      
+      <Drawer.Screen name='mainMenu' options={{ header : () => <AppHeader title="Menu principal"/> }} />           
     </Drawer>
   )
 }
