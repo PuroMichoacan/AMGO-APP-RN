@@ -1,10 +1,17 @@
 import { useAuthStore } from "@/modules/auth/store/useAuthStore";
-import { ThemeText } from "@/modules/components/ThemeText";
+import { ThemeText } from "@/shared/components/ThemeText";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { Alert, Pressable, ScrollView, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 export default function Login() {
   const [env, setEnv] = useState<"calidad" | "produccion" | "Desarrollo">(
     "produccion",
@@ -80,8 +87,9 @@ export default function Login() {
           <View className="flex-row bg-black/20 rounded-xl p-1 mb-6 relative">
             <Pressable
               onPress={() => setEnv("calidad")}
-              className={`flex-1 py-2 rounded-lg ${env === "calidad" ? "bg-white/20" : ""
-                }`}
+              className={`flex-1 py-2 rounded-lg ${
+                env === "calidad" ? "bg-white/20" : ""
+              }`}
             >
               <ThemeText className="text-center text-white font-semibold text-xs">
                 CALIDAD
@@ -90,8 +98,9 @@ export default function Login() {
 
             <Pressable
               onPress={() => setEnv("produccion")}
-              className={`flex-1 py-2 rounded-lg ${env === "produccion" ? "bg-white/20" : ""
-                }`}
+              className={`flex-1 py-2 rounded-lg ${
+                env === "produccion" ? "bg-white/20" : ""
+              }`}
             >
               <ThemeText className="text-center text-white font-semibold text-xs">
                 PRODUCCIÓN
@@ -100,8 +109,9 @@ export default function Login() {
 
             <Pressable
               onPress={() => setEnv("Desarrollo")}
-              className={`flex-1 py-2 rounded-lg ${env === "Desarrollo" ? "bg-white/20" : ""
-                }`}
+              className={`flex-1 py-2 rounded-lg ${
+                env === "Desarrollo" ? "bg-white/20" : ""
+              }`}
             >
               <ThemeText className="text-center text-white font-semibold text-xs">
                 DESARROLLO

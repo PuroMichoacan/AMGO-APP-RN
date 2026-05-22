@@ -1,49 +1,54 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from "expo-router";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeText } from "./ThemeText";
 
 interface AppHeaderProps {
   title?: string;
   onNotificationsPress?: () => void;
   onSyncPress?: () => void;
+  canGoBack?: boolean;
+  showDrawerButton?: boolean;
 }
 
 export default function AppHeader({
   title,
   onNotificationsPress,
   onSyncPress,
+  canGoBack = false,
+  showDrawerButton = true,
 }: AppHeaderProps) {
+  const router = useRouter();
 
-    // Optener notificaciones aqui
+  // Optener notificaciones aqui
 
-    // return (
-    //     <SafeAreaView className="bg-ampurple-900 h-[70px]">
-    //         <View className="flex flex-row items-center px-3">
-    //             {/* Botón menú */}
-    //             <DrawerToggleButton tintColor="white" />
-    //             {/* Centro y derecha */}
-    //             <View className="flex-1 flex-row items-center justify-between">
+  // return (
+  //     <SafeAreaView className="bg-ampurple-900 h-[70px]">
+  //         <View className="flex flex-row items-center px-3">
+  //             {/* Botón menú */}
+  //             <DrawerToggleButton tintColor="white" />
+  //             {/* Centro y derecha */}
+  //             <View className="flex-1 flex-row items-center justify-between">
 
-    //                 {/* Título */}
-    //                 <ThemeText className="text-white text-lg font-semibold">
-    //                     {title}
-    //                 </ThemeText>
+  //                 {/* Título */}
+  //                 <ThemeText className="text-white text-lg font-semibold">
+  //                     {title}
+  //                 </ThemeText>
 
-    //                 {/* Acciones */}
-    //                 <View className="flex flex-row gap-5">
-    //                     <Ionicons name="notifications" size={22} color="white" />
-    //                     <Ionicons name="sync" size={22} color="white" />
-    //                 </View>
-    //             </View>
-    //         </View>
-    //     </SafeAreaView>
-    // );
+  //                 {/* Acciones */}
+  //                 <View className="flex flex-row gap-5">
+  //                     <Ionicons name="notifications" size={22} color="white" />
+  //                     <Ionicons name="sync" size={22} color="white" />
+  //                 </View>
+  //             </View>
+  //         </View>
+  //     </SafeAreaView>
+  // );
 
-
-     return (
+  return (
     <SafeAreaView edges={["top"]} style={{ backgroundColor: "#460a78" }}>
       <LinearGradient
         colors={["#460a78", "#be2878", "#e63c41", "#f58746", "#ffbe6e"]}
@@ -52,9 +57,16 @@ export default function AppHeader({
         style={styles.gradient}
       >
         {/* Botón izquierdo */}
-        <View style={styles.side}>
-          <DrawerToggleButton tintColor="white" />
-        </View>
+
+        {showDrawerButton && canGoBack === false ? (
+          <View style={styles.side}>
+            <DrawerToggleButton tintColor="white" />
+          </View>
+        ) : (
+          <TouchableOpacity onPress={() => router.back()} className="mr-3 ml-5">
+            <Ionicons name="arrow-back" size={24} color="white" />
+          </TouchableOpacity>
+        )}
 
         {/* Título centrado absolutamente */}
         <View style={styles.titleContainer} pointerEvents="none">
@@ -62,7 +74,6 @@ export default function AppHeader({
             {title}
           </ThemeText>
         </View>
-
         {/* Acciones derecha */}
         <View style={[styles.side, styles.sideRight]}>
           <Ionicons
@@ -81,11 +92,7 @@ export default function AppHeader({
       </LinearGradient>
     </SafeAreaView>
   );
-
 }
-
-
-
 
 const styles = StyleSheet.create({
   gradient: {
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   side: {
-    width: 80,           // ancho fijo igual en ambos lados → título siempre centrado
+    width: 80, // ancho fijo igual en ambos lados → título siempre centrado
     justifyContent: "center",
   },
   sideRight: {
