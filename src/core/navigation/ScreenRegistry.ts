@@ -13,8 +13,8 @@
 export const RouteRegistry = {
   HSM_COILYARD_PROCESO_CARGA: "/RegistroSet",
   HSM_COILYARD_TAB: "/coilyard/tab",
-  //   HSM_COILYARD_REGISTRO_SETS: "/(app)/(HSM)/(CoilYard)/RegistroSet",
-  HSM_COILYARD_REGISTRO_SETS: "/RegistroSet",
+    // HSM_COILYARD_REGISTRO_SETS: "/(app)/(HSM)/(CoilYard)/RegistroSet",
+  // HSM_COILYARD_REGISTRO_SETS: "/RegistroSet",
 } as const;
 
 export type ScreenKey = keyof typeof RouteRegistry;

@@ -85,6 +85,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
   checkStatus: async () => {
     // 1. Obtener environment guardado
     const storedEnv = await SecureStorageAdapter.getItem("env");
+    console.log('Ambiente guardado: ',storedEnv);
     const env = (storedEnv as Environment) ?? "PROD"; // ambiente guardado previamente
 
     set({ environment: env });
