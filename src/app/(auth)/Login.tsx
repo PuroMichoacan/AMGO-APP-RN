@@ -42,7 +42,8 @@ export default function Login() {
     setIsPosting(false);
 
     if (wasSuccesful) {
-      router.replace("/mainMenu");
+      // router.replace("/mainMenu");
+      router.replace("/(protected)/mainMenu");
       return;
     }
 

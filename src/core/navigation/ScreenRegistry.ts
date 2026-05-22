@@ -18,3 +18,9 @@ export const RouteRegistry = {
 } as const;
 
 export type ScreenKey = keyof typeof RouteRegistry;
+
+type ScreenComponent = React.ComponentType<any>;
+
+type ScreenRegistry = {
+  [key: string]: ScreenComponent;
+};
